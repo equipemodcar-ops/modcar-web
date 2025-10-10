@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, Users, Settings, FileText, Upload, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Users, Settings, FileText, Upload, LogOut, UserCog } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import {
   Sidebar,
@@ -20,6 +20,7 @@ const adminMenuItems = [
   { title: 'Dashboard', url: '/admin', icon: LayoutDashboard },
   { title: 'Produtos', url: '/admin/products', icon: Package },
   { title: 'Fornecedores', url: '/admin/partners', icon: Users },
+  { title: 'Clientes', url: '/admin/customers', icon: UserCog },
   { title: 'Relatórios', url: '/admin/reports', icon: FileText },
   { title: 'Configurações', url: '/admin/settings', icon: Settings },
 ];

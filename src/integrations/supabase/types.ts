@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      orders: {
+        Row: {
+          created_at: string | null
+          customer_id: string
+          id: string
+          product_id: string
+          quantity: number
+          status: string
+          total_price: number
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          customer_id: string
+          id?: string
+          product_id: string
+          quantity?: number
+          status?: string
+          total_price: number
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          customer_id?: string
+          id?: string
+          product_id?: string
+          quantity?: number
+          status?: string
+          total_price?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "orders_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       partner_subscriptions: {
         Row: {
           created_at: string | null
@@ -112,30 +160,51 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
           avatar: string | null
+          blocked_at: string | null
+          blocked_reason: string | null
           company: string | null
+          cpf: string | null
           created_at: string | null
           email: string
           id: string
+          last_access_at: string | null
           name: string
+          phone: string | null
+          status: string
           updated_at: string | null
         }
         Insert: {
+          address?: string | null
           avatar?: string | null
+          blocked_at?: string | null
+          blocked_reason?: string | null
           company?: string | null
+          cpf?: string | null
           created_at?: string | null
           email: string
           id: string
+          last_access_at?: string | null
           name: string
+          phone?: string | null
+          status?: string
           updated_at?: string | null
         }
         Update: {
+          address?: string | null
           avatar?: string | null
+          blocked_at?: string | null
+          blocked_reason?: string | null
           company?: string | null
+          cpf?: string | null
           created_at?: string | null
           email?: string
           id?: string
+          last_access_at?: string | null
           name?: string
+          phone?: string | null
+          status?: string
           updated_at?: string | null
         }
         Relationships: []

@@ -13,6 +13,7 @@ import { AdminProducts } from "./core/admin/pages/AdminProducts";
 import { AdminPartners } from "./core/admin/pages/AdminPartners";
 import { AdminReports } from "./core/admin/pages/AdminReports";
 import { AdminSettings } from "./core/admin/pages/AdminSettings";
+import { AdminCustomers } from "./core/admin/pages/AdminCustomers";
 import { PartnerDashboard } from "./core/partner/pages/PartnerDashboard";
 import { PartnerProducts } from "./core/partner/pages/PartnerProducts";
 import { PartnerSettings } from "./core/partner/pages/PartnerSettings";
@@ -58,6 +59,11 @@ function AppRoutes() {
       <Route path="/admin/settings" element={
         <ProtectedRoute allowedRoles={['admin']}>
           <DashboardLayout><AdminSettings /></DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/customers" element={
+        <ProtectedRoute allowedRoles={['admin']}>
+          <DashboardLayout><AdminCustomers /></DashboardLayout>
         </ProtectedRoute>
       } />
 
