@@ -45,7 +45,7 @@ export function AddProductDialog({ onSuccess, children }: { onSuccess: () => voi
   const form = useForm<ProductFormData>({
     resolver: zodResolver(productSchema),
     defaultValues: {
-      status: 'active',
+      status: 'pending',
       technical_specs: '',
     },
   });

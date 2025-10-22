@@ -31,6 +31,8 @@ interface Product {
   status: 'active' | 'inactive' | 'pending';
   created_at: string;
   images: string[];
+  rejection_reason?: string | null;
+  approved_at?: string | null;
 }
 
 export function PartnerProducts() {
@@ -92,14 +94,21 @@ export function PartnerProducts() {
     product.brand.toLowerCase().includes(search.toLowerCase())
   );
 
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status: string, rejectionReason?: string | null) => {
     const variants: Record<string, { label: string; className: string }> = {
-      active: { label: 'Ativo', className: 'bg-primary/20 text-primary' },
-      inactive: { label: 'Inativo', className: 'bg-muted text-muted-foreground' },
-      pending: { label: 'Pendente', className: 'bg-destructive/20 text-destructive' },
+      active: { label: 'Aprovado', className: 'bg-primary/20 text-primary' },
+      inactive: { label: 'Rejeitado', className: 'bg-destructive/20 text-destructive' },
+      pending: { label: 'Aguardando Aprovação', className: 'bg-warning/20 text-warning' },
     };
-    const { label, className } = variants[status] || variants.active;
-    return <Badge className={className}>{label}</Badge>;
+    const { label, className } = variants[status] || variants.pending;
+    return (
+      <Badge className={className} title={rejectionReason || undefined}>
+        {label}
+        {status === 'inactive' && rejectionReason && (
+          <span className="ml-1 cursor-help" title={rejectionReason}>ℹ️</span>
+        )}
+      </Badge>
+    );
   };
 
   return (
@@ -192,7 +201,7 @@ export function PartnerProducts() {
                       <TableCell className="text-sm text-muted-foreground">
                         {format(new Date(product.created_at), 'dd/MM/yyyy', { locale: ptBR })}
                       </TableCell>
-                      <TableCell>{getStatusBadge(product.status)}</TableCell>
+                      <TableCell>{getStatusBadge(product.status, product.rejection_reason)}</TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <Button size="sm" variant="ghost">
