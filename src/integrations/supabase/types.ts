@@ -18,7 +18,10 @@ export type Database = {
         Row: {
           created_at: string | null
           customer_id: string
+          erp_reference: string | null
           id: string
+          notes: string | null
+          partner_id: string | null
           product_id: string
           quantity: number
           status: string
@@ -28,7 +31,10 @@ export type Database = {
         Insert: {
           created_at?: string | null
           customer_id: string
+          erp_reference?: string | null
           id?: string
+          notes?: string | null
+          partner_id?: string | null
           product_id: string
           quantity?: number
           status?: string
@@ -38,7 +44,10 @@ export type Database = {
         Update: {
           created_at?: string | null
           customer_id?: string
+          erp_reference?: string | null
           id?: string
+          notes?: string | null
+          partner_id?: string | null
           product_id?: string
           quantity?: number
           status?: string
@@ -106,6 +115,8 @@ export type Database = {
       }
       products: {
         Row: {
+          approved_at: string | null
+          approved_by: string | null
           brand: string
           category: string
           code: string
@@ -117,12 +128,15 @@ export type Database = {
           name: string
           partner_id: string
           price: number
+          rejection_reason: string | null
           status: string
           stock: number
           technical_specs: Json | null
           updated_at: string | null
         }
         Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
           brand: string
           category: string
           code: string
@@ -134,12 +148,15 @@ export type Database = {
           name: string
           partner_id: string
           price: number
+          rejection_reason?: string | null
           status?: string
           stock?: number
           technical_specs?: Json | null
           updated_at?: string | null
         }
         Update: {
+          approved_at?: string | null
+          approved_by?: string | null
           brand?: string
           category?: string
           code?: string
@@ -151,6 +168,7 @@ export type Database = {
           name?: string
           partner_id?: string
           price?: number
+          rejection_reason?: string | null
           status?: string
           stock?: number
           technical_specs?: Json | null
@@ -209,6 +227,53 @@ export type Database = {
         }
         Relationships: []
       }
+      stock_movements: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          movement_type: string
+          new_stock: number
+          notes: string | null
+          previous_stock: number
+          product_id: string
+          quantity: number
+          reference_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          movement_type: string
+          new_stock: number
+          notes?: string | null
+          previous_stock: number
+          product_id: string
+          quantity: number
+          reference_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          movement_type?: string
+          new_stock?: number
+          notes?: string | null
+          previous_stock?: number
+          product_id?: string
+          quantity?: number
+          reference_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stock_movements_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
@@ -232,12 +297,31 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      approve_product: {
+        Args: { _admin_id: string; _product_id: string }
+        Returns: Json
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      reject_product: {
+        Args: { _admin_id: string; _product_id: string; _reason: string }
+        Returns: Json
+      }
+      update_product_stock: {
+        Args: {
+          _movement_type: string
+          _notes?: string
+          _product_id: string
+          _quantity_change: number
+          _reference_id?: string
+          _user_id?: string
+        }
+        Returns: Json
       }
     }
     Enums: {
