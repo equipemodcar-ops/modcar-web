@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 
 const adminMenuItems = [
   { title: 'Dashboard', url: '/admin', icon: LayoutDashboard },
+  { title: 'KPIs', url: '/admin/kpis', icon: FileText },
   { title: 'Produtos', url: '/admin/products', icon: Package },
   { title: 'Fornecedores', url: '/admin/partners', icon: Users },
   { title: 'Clientes', url: '/admin/customers', icon: UserCog },
