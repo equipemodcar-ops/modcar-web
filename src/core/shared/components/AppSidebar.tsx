@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, Users, Settings, FileText, Upload, LogOut, UserCog } from 'lucide-react';
+import { LayoutDashboard, Package, Users, Settings, FileText, Upload, LogOut, UserCog, Megaphone } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import {
   Sidebar,
@@ -20,8 +20,9 @@ const adminMenuItems = [
   { title: 'Dashboard', url: '/admin', icon: LayoutDashboard },
   { title: 'KPIs', url: '/admin/kpis', icon: FileText },
   { title: 'Produtos', url: '/admin/products', icon: Package },
-  { title: 'Fornecedores', url: '/admin/partners', icon: Users },
+  { title: 'Vendedores', url: '/admin/partners', icon: Users },
   { title: 'Clientes', url: '/admin/customers', icon: UserCog },
+  { title: 'Anúncios', url: '/admin/campaigns', icon: Megaphone },
   { title: 'Relatórios', url: '/admin/reports', icon: FileText },
   { title: 'Configurações', url: '/admin/settings', icon: Settings },
 ];
@@ -29,6 +30,7 @@ const adminMenuItems = [
 const partnerMenuItems = [
   { title: 'Dashboard', url: '/partner', icon: LayoutDashboard },
   { title: 'Meus Produtos', url: '/partner/products', icon: Package },
+  { title: 'Meus Anúncios', url: '/partner/campaigns', icon: Megaphone },
   { title: 'Configurações', url: '/partner/settings', icon: Settings },
 ];
 
@@ -50,7 +52,7 @@ export function AppSidebar() {
             <div>
               <h2 className="font-bold text-sidebar-foreground">ModCar</h2>
               <p className="text-xs text-muted-foreground">
-                {user?.role === 'admin' ? 'Administrador' : 'Fornecedor'}
+                {user?.role === 'admin' ? 'Administrador' : 'Vendedor'}
               </p>
             </div>
           </div>

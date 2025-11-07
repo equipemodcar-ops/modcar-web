@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      campaigns: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          clicks: number | null
+          created_at: string | null
+          description: string | null
+          end_date: string
+          id: string
+          image_url: string
+          impressions: number | null
+          link_url: string | null
+          partner_id: string
+          rejection_reason: string | null
+          start_date: string
+          status: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          clicks?: number | null
+          created_at?: string | null
+          description?: string | null
+          end_date: string
+          id?: string
+          image_url: string
+          impressions?: number | null
+          link_url?: string | null
+          partner_id: string
+          rejection_reason?: string | null
+          start_date: string
+          status?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          clicks?: number | null
+          created_at?: string | null
+          description?: string | null
+          end_date?: string
+          id?: string
+          image_url?: string
+          impressions?: number | null
+          link_url?: string | null
+          partner_id?: string
+          rejection_reason?: string | null
+          start_date?: string
+          status?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           created_at: string | null
