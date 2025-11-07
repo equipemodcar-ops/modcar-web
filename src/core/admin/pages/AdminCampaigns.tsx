@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Eye, Check, X, TrendingUp } from 'lucide-react';
+import { Eye, Check, X, TrendingUp, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -26,6 +26,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
+import { AddAdminCampaignDialog } from '../components/AddAdminCampaignDialog';
 
 interface Campaign {
   id: string;
@@ -58,6 +59,7 @@ export function AdminCampaigns() {
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   const [rejectReason, setRejectReason] = useState('');
   const [showRejectDialog, setShowRejectDialog] = useState(false);
+  const [showAddDialog, setShowAddDialog] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
 
@@ -183,11 +185,17 @@ export function AdminCampaigns() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground">Anúncios</h1>
-        <p className="text-muted-foreground mt-1">
-          Gerencie e aprove os anúncios dos vendedores
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">Anúncios</h1>
+          <p className="text-muted-foreground mt-1">
+            Gerencie e aprove os anúncios dos vendedores
+          </p>
+        </div>
+        <Button onClick={() => setShowAddDialog(true)}>
+          <Plus className="h-4 w-4 mr-2" />
+          Criar Anúncio
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -336,6 +344,12 @@ export function AdminCampaigns() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <AddAdminCampaignDialog
+        open={showAddDialog}
+        onOpenChange={setShowAddDialog}
+        onSuccess={loadCampaigns}
+      />
     </div>
   );
 }
