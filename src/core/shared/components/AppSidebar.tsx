@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, Users, Settings, FileText, Upload, LogOut, UserCog, Megaphone } from 'lucide-react';
+import { LayoutDashboard, Package, Users, Settings, FileText, Upload, LogOut, UserCog, Megaphone, Headphones } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import {
   Sidebar,
@@ -23,6 +23,7 @@ const adminMenuItems = [
   { title: 'Vendedores', url: '/admin/partners', icon: Users },
   { title: 'Clientes', url: '/admin/customers', icon: UserCog },
   { title: 'Anúncios', url: '/admin/campaigns', icon: Megaphone },
+  { title: 'Suporte', url: '/admin/support', icon: Headphones },
   { title: 'Relatórios', url: '/admin/reports', icon: FileText },
   { title: 'Configurações', url: '/admin/settings', icon: Settings },
 ];
@@ -31,6 +32,7 @@ const partnerMenuItems = [
   { title: 'Dashboard', url: '/partner', icon: LayoutDashboard },
   { title: 'Meus Produtos', url: '/partner/products', icon: Package },
   { title: 'Meus Anúncios', url: '/partner/campaigns', icon: Megaphone },
+  { title: 'Suporte', url: '/partner/support', icon: Headphones },
   { title: 'Configurações', url: '/partner/settings', icon: Settings },
 ];
 

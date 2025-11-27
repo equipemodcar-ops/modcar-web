@@ -331,6 +331,51 @@ export type Database = {
           },
         ]
       }
+      support_tickets: {
+        Row: {
+          admin_notes: string | null
+          attachments: string[] | null
+          created_at: string | null
+          description: string
+          id: string
+          partner_id: string
+          priority: string
+          resolved_at: string | null
+          resolved_by: string | null
+          status: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          attachments?: string[] | null
+          created_at?: string | null
+          description: string
+          id?: string
+          partner_id: string
+          priority?: string
+          resolved_at?: string | null
+          resolved_by?: string | null
+          status?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          attachments?: string[] | null
+          created_at?: string | null
+          description?: string
+          id?: string
+          partner_id?: string
+          priority?: string
+          resolved_at?: string | null
+          resolved_by?: string | null
+          status?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string

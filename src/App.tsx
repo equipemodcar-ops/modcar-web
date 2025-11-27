@@ -16,10 +16,12 @@ import { AdminSettings } from "./core/admin/pages/AdminSettings";
 import { AdminCustomers } from "./core/admin/pages/AdminCustomers";
 import { AdminKPIs } from "./core/admin/pages/AdminKPIs";
 import { AdminCampaigns } from "./core/admin/pages/AdminCampaigns";
+import AdminSupport from "./core/admin/pages/AdminSupport";
 import { PartnerDashboard } from "./core/partner/pages/PartnerDashboard";
 import { PartnerProducts } from "./core/partner/pages/PartnerProducts";
 import { PartnerSettings } from "./core/partner/pages/PartnerSettings";
 import { PartnerCampaigns } from "./core/partner/pages/PartnerCampaigns";
+import PartnerSupport from "./core/partner/pages/PartnerSupport";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Signup from "./pages/Signup";
@@ -79,6 +81,11 @@ function AppRoutes() {
           <DashboardLayout><AdminCampaigns /></DashboardLayout>
         </ProtectedRoute>
       } />
+      <Route path="/admin/support" element={
+        <ProtectedRoute allowedRoles={['admin']}>
+          <DashboardLayout><AdminSupport /></DashboardLayout>
+        </ProtectedRoute>
+      } />
 
       {/* Partner Routes */}
       <Route path="/partner" element={
@@ -99,6 +106,11 @@ function AppRoutes() {
       <Route path="/partner/campaigns" element={
         <ProtectedRoute allowedRoles={['partner']}>
           <DashboardLayout><PartnerCampaigns /></DashboardLayout>
+        </ProtectedRoute>
+      } />
+      <Route path="/partner/support" element={
+        <ProtectedRoute allowedRoles={['partner']}>
+          <DashboardLayout><PartnerSupport /></DashboardLayout>
         </ProtectedRoute>
       } />
 
